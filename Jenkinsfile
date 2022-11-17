@@ -2,18 +2,18 @@ node {
     def resultImage
     def voteImage
     def workerImage
-    docker.withRegistry("https://index.docker.io/v1/", "dockersamples" ) { 
+    docker.withRegistry("https://index.docker.io/v1/", "fdjapi10" ) { 
       stage('Clone repo') {
         checkout scm
       }
       stage('Build result') {
-        resultImage = docker.build("dockersamples/result", "./result")
+        resultImage = docker.build("example-voting-apps/result", "./result")
       } 
       stage('Build vote') {
-        voteImage = docker.build("dockersamples/vote", "./vote")
+        voteImage = docker.build("example-voting-app/vote", "./vote")
       }
       stage('Build worker dotnet') {
-        workerImage = docker.build("dockersamples/worker", "./worker")
+        workerImage = docker.build("example-voting-app/worker", "./worker")
       }
       stage('Push result image') {
           resultImage.push("${env.BUILD_NUMBER}")
