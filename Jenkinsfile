@@ -2,7 +2,7 @@ node {
     def resultImage
     def voteImage
     def workerImage
-    docker.withRegistry('https://hub.docker.com', 'Dockerhub' ) { 
+    docker.withRegistry('https://hub.docker.com/v1/', 'Dockerhub' ) { 
       stage('Clone repo') {
         checkout scm
       }
