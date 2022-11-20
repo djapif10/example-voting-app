@@ -16,19 +16,19 @@ node {
         workerImage = docker.build("example-voting-app/worker", "./worker")
     }
     stage('Push result image') {
-      docker.withRegistry('https://hub.docker.com', 'Dockerhub' ) {
+      docker.withRegistry('https://hub.docker.com', 'dockerhub' ) {
           resultImage.push("${env.BUILD_NUMBER}")
           resultImage.push()
       }
     }
     stage('Push vote image') {
-      docker.withRegistry('https://hub.docker.com', 'Dockerhub' ) {
+      docker.withRegistry('https://hub.docker.com', 'dockerhub' ) {
           voteImage.push("${env.BUILD_NUMBER}")
           voteImage.push()
       }
     }
     stage('Push worker image') {
-       docker.withRegistry('https://hub.docker.com', 'Dockerhub' ) {
+       docker.withRegistry('https://hub.docker.com', 'dockerhub' ) {
           workerImage.push("${env.BUILD_NUMBER}")
           workerImage.push()
        }
